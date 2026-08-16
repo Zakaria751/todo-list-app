@@ -1,0 +1,12 @@
+<li class="task-item" [class.completed]="task.completed">
+  <span class="task-title">
+    {{ task.completed ? '✔ ' : '☐ ' }}{{ task.title }}
+  </span>
+
+  <div class="task-actions">
+    <button class="complete-btn" (click)="onToggleComplete()">
+      {{ task.completed ? 'Undo' : 'Complete' }}
+    </button>
+    <button class="delete-btn" (click)="onDelete()">Delete</button>
+  </div>
+</li>

@@ -1,0 +1,42 @@
+<main class="todo-app">
+  <h1>My To-Do List</h1>
+
+  <div class="add-task-row">
+    <input
+      type="text"
+      placeholder="Add a new task..."
+      [(ngModel)]="newTaskTitle"
+      (keyup.enter)="addTask()"
+    />
+    <button (click)="addTask()" [disabled]="!newTaskTitle.trim()">
+      Add
+    </button>
+  </div>
+
+  <hr />
+
+  @if (tasks.length === 0) {
+    <p class="empty-state">No tasks yet. Add one above! 📝</p>
+  } @else {
+    <ul class="task-list">
+      @for (task of tasks; track task) {
+        <app-todo-item
+          [task]="task"
+          (toggleComplete)="toggleComplete(task)"
+          (delete)="deleteTask(task)"
+        />
+      }
+    </ul>
+  }
+
+  <hr />
+
+  <div class="counter">
+    <span>Total Tasks: {{ totalTasks }}</span>
+    <span>Completed: {{ completedTasks }}</span>
+  </div>
+
+  @if (allCompleted) {
+    <p class="celebration">🎉 All tasks completed!</p>
+  }
+</main>
